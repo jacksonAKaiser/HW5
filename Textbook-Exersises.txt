@@ -10,6 +10,21 @@ Show how you might accomplish the same task using a while or do (repeat) loop, i
 (Hint: One alternative duplicates part of the code; another introduces a Boolean flag variable.) How do these 
 alternatives compare to the mid-test version?
 
+var
+  line: string;
+  allBlanks: boolean;
+
+allBlanks := false;
+while not allBlanks do
+begin
+  line := read_line();
+  allBlanks := all_blanks(line);
+  if not allBlanks then
+    consume_line(line);
+end;
+
+The boolean flag might be considered more readable and easier to understand because it explicitly states the condition for continuation.
+
 6.26 This question asks you to transform a nested loop with a goto statment into one without. Java has no goto statment.
 
 Rubin [Rub87] used the following example (rewritten here in C) to argue in favor of a goto statement:
@@ -25,3 +40,22 @@ Rubin [Rub87] used the following example (rewritten here in C) to argue in favor
  }
 The intent of the code is to find the first all-zero row, if any, of an n × n matrix. 
 Do you find the example convincing? Is there a good structured alternative in C? In any language?
+
+int firstZeroRow = -1; //none
+
+outerLoop:
+for (int i = 0; i < n && firstZeroRow == -1; i++) {
+  boolean allZeros = true; // Assume all zeros in the row
+
+  for (int j = 0; j < n; j++) {
+    if (A[i][j] != 0) {
+      allZeros = false; // Set to false if non-zero element is found
+      break;
+    }
+  }
+
+  if (allZeros) {
+    firstZeroRow = i;
+    break outerLoop; // exit outer loop if zero row if found
+  }
+}
