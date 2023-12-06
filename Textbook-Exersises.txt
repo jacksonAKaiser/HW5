@@ -1,0 +1,27 @@
+6.25 This question asks you to transform a loop with a break statment into one without. Pasecal has no break statment.
+
+Consider a mid-test loop, here written in C, that looks for blank lines in its input:
+ for (;;) {
+  line = read_line();
+ if (all_blanks(line)) break;
+ consume_line(line);
+ }
+Show how you might accomplish the same task using a while or do (repeat) loop, if mid-test loops were not available. 
+(Hint: One alternative duplicates part of the code; another introduces a Boolean flag variable.) How do these 
+alternatives compare to the mid-test version?
+
+6.26 This question asks you to transform a nested loop with a goto statment into one without. Java has no goto statment.
+
+Rubin [Rub87] used the following example (rewritten here in C) to argue in favor of a goto statement:
+ int first_zero_row = -1; /* none */
+ int i, j;
+ for (i = 0; i < n; i++) {
+  for (j = 0; j < n; j++) {
+   if (A[i][j]) goto next;
+  }
+  first_zero_row = i;
+  break;
+ next: ;
+ }
+The intent of the code is to find the first all-zero row, if any, of an n × n matrix. 
+Do you find the example convincing? Is there a good structured alternative in C? In any language?
